@@ -1,0 +1,1 @@
+# docker nginx read environment variables

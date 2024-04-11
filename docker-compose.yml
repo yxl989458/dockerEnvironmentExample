@@ -1,0 +1,21 @@
+version: '1'
+
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - 8080:80
+    working_dir: /app/web
+    volumes:
+      - .:/app/web
+    environment:
+      - BACKENDURL=backend:3000
+    command: './start.sh'
+  nodeServer:
+    image: node:alpine
+    ports:
+      - 3000:3000
+    working_dir: /app/server
+    volumes:
+      - ./node:/app/server
+    command: 'npm run start'

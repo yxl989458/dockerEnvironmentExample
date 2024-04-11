@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      th {
+        text-align: center;
+      }
+    </style>
+    <table border="1" cellspacing="1">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <!-- 渲染数据 -->
+      </tbody>
+    </table>
+    <script>
+      (async () => {
+        const tbody = document.getElementById("tbody");
+        const data = await fetch(`${window.location.origin}/api/userList`);
+        const json = await data.json();
+        json.data.forEach((user) => {
+          const tr = document.createElement("tr");
+          const td1 = document.createElement("td");
+          const td2 = document.createElement("td");
+          const td3 = document.createElement("td");
+          td1.innerHTML = user.id;
+          td2.innerHTML = user.name;
+          td3.innerHTML = user.age;
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          tbody.appendChild(tr);
+        });
+      })();
+      //免费测试接口
+    </script>
+  </body>
+</html>
